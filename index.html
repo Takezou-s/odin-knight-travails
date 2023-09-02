@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./Vertex.js" defer></script>
+    <script src="./KnightMoveGraph.js" defer></script>
+    <script src="./card-operations.js" defer></script>
+    <script src="./board-operations.js" defer></script>
+    <script src="./app.js" defer></script>
+    <title>Document</title>
+    <style>
+      #board {
+        display: grid;
+        grid-template-columns: repeat(8, 100px);
+        grid-auto-rows: 100px;
+        width: max-content;
+        height: max-content;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.16),
+          0 8px 8px rgba(0, 0, 0, 0.2);
+      }
+      @font-face {
+        font-family: "Gwent";
+        src: url("./font/hinted-GWENT-ExtraBold.ttf");
+      }
+      body {
+        font-family: "Gwent";
+        margin: 0;
+        padding: 0;
+        color: white;
+      }
+      .card-container {
+        display: flex;
+        /* min-height: 300px; */
+        gap: 8px;
+        align-items: flex-end;
+      }
+      .card {
+        padding: 8px;
+        font-size: 2rem;
+        /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 2px 0px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.16),
+          0 8px 8px rgba(0, 0, 0, 0.2); */
+      }
+      .card-title {
+        transition: font-size 0.4s ease;
+        text-align: center;
+      }
+      .card:not(.up) .card-title {
+        font-size: 0px;
+      }
+      .card.up .card-title {
+        font-size: inherit;
+      }
+      .main {
+        display: flex;
+        align-items: start;
+        gap: 8px;
+        background-image: url("./img/board.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100vw;
+        height: 100vh;
+        overflow: auto;
+      }
+      .cell {
+        transition: scale 0.4s ease;
+      }
+      .cell:hover {
+        scale: 1.25;
+        box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.83), 0 1px 4px 0 rgba(0, 0, 0, 0.81);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="card-container">
+        <div class="card" data-name="geralt" data-placed="false">
+          <img src="./img/geralt.png" />
+          <div class="card-title">Geralt</div>
+        </div>
+        <div class="card" data-name="monster" data-placed="false">
+          <img src="./img/nekker.jpg" />
+          <div class="card-title">Nekker</div>
+        </div>
+      </div>
+      <div id="board"></div>
+    </div>
+  </body>
+</html>
