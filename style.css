@@ -166,7 +166,7 @@ a:visited {
 }
 
 .c-footer__play:before {
-  background: url(/img/button-texture.png) no-repeat;
+  background: url("./img/button-texture.png") no-repeat;
 }
 
 .c-footer__play:after,
