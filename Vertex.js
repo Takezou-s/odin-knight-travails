@@ -1,19 +1,19 @@
 class Vertex {
-    value = null;
-    connected = [];
-    height = null;
-    predecessor = null;
+  value = null;
+  connected = [];
+  height = null;
+  predecessor = null;
 
-    constructor(value){
-        this.value = value;
-    }
+  constructor(value) {
+    this.value = value;
+  }
 
-    reset = () => {
-        this.height = null;
-        this.predecessor = null;
-    }
+  reset = () => {
+    this.height = null;
+    this.predecessor = null;
+  };
 
-    toString = () => {
-        return this.value[0] + ", " + this.value[1];
-    }
+  toString = () => {
+    return this.value[0] + ", " + this.value[1];
+  };
 }

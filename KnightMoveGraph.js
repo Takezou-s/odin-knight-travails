@@ -46,7 +46,8 @@ class KnightMoveGraph {
       if (this.isConnected(result[result.length - 1], targetVertex)) result.push(targetVertex);
     }
     this.place(row, col);
-    return result.map((x) => x.toString());
+
+    return result.map((x) => x.value);
   };
 
   getVertex = (row, col) => {

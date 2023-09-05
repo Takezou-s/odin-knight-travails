@@ -14,26 +14,18 @@ function cardOperations() {
   };
 
   const isCardPlaced = (card) => {
-    // const cardEl = getCardElement(card);
-    // return cardEl && cardEl.dataset.placed === "true";
     return act(card, (cardEl) => cardEl.dataset.placed === "true");
   };
 
   const isDetailsShown = (card) => {
-    // const cardEl = getCardElement(card);
-    // return cardEl && cardEl.classList.contains("up");
     return act(card, (cardEl) => cardEl.classList.contains("up"));
   };
 
   const showDetails = (card) => {
-    // const cardEl = getCardElement(card);
-    // cardEl.classList.add("up");
     act(card, (cardEl) => cardEl.classList.add("up"));
   };
 
   const hideDetails = (card) => {
-    // const cardEl = getCardElement(card);
-    // cardEl.classList.remove("up");
     act(card, (cardEl) => cardEl.classList.remove("up"));
   };
 
@@ -41,14 +33,22 @@ function cardOperations() {
     act(card, (cardEl) => cardEl.classList.toggle("up"));
   };
 
-  const addToBoard = (card) => {
-    act(card, (cardEl) => (cardEl.dataset.placed = "true"));
+  const addToBoard = (card, row, col) => {
+    act(card, (cardEl) => {
+      cardEl.dataset.placed = "true";
+      cardEl.dataset.row = row;
+      cardEl.dataset.col = col;
+    });
     blur(card);
     setSelectedCard(null);
   };
 
   const removeFromBoard = (card) => {
-    act(card, (cardEl) => (cardEl.dataset.placed = "false"));
+    act(card, (cardEl) => {
+      cardEl.dataset.placed = "false";
+      cardEl.dataset.row = "";
+      cardEl.dataset.col = "";
+    });
     removeBlur(card);
   };
 
@@ -88,6 +88,17 @@ function cardOperations() {
     cardSelectedHandler = fn;
   };
 
+  const getPlace = (card) => {
+    return act(card, (cardEl) => [+cardEl.dataset.row, +cardEl.dataset.col]);
+  };
+
+  const setPlace = (card, row, col) => {
+    return act(card, (cardEl) => {
+      cardEl.dataset.row = row;
+      cardEl.dataset.col = col;
+    });
+  };
+
   const cardClickHandler = (event) => {
     const card = event.currentTarget;
 
@@ -99,5 +110,5 @@ function cardOperations() {
 
   cards.forEach((x) => x.addEventListener("click", cardClickHandler));
 
-  return { onCardSelected, addToBoard, removeFromBoard, getCardName };
+  return { onCardSelected, addToBoard, removeFromBoard, getCardName, isCardPlaced, getPlace, setPlace };
 }
